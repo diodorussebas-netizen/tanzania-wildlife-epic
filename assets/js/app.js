@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.menu-btn'),p=document.querySelector('.mobile-panel');if(b&&p)b.addEventListener('click',()=>p.classList.toggle('open'));document.querySelectorAll('.nav-item>button').forEach(btn=>btn.addEventListener('click',()=>btn.parentElement.classList.toggle('open')));});
