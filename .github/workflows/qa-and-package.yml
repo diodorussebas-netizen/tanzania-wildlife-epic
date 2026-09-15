@@ -20,7 +20,7 @@ jobs:
           find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
       - name: Verify branding hygiene
         run: |
-          ! grep -RniE 'Mbega African Safaris|Peaceful Expeditions' --exclude-dir=.git .
+          ! grep -RniE 'Mbega African Safaris|Peaceful Expeditions' --exclude-dir=.git --exclude='qa-and-package.yml' .
       - name: Build production zip
         run: |
           zip -r Tanzania-Wildlife-Epic-PRODUCTION.zip . -x '.git/*' '.github/*' 'config.php' '*.DS_Store'
