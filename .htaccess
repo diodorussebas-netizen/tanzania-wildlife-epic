@@ -3,6 +3,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^sitemap\.xml$ sitemap.php [L]
 RewriteRule ^search/?$ search.php [L,QSA]
+RewriteRule ^plan-your-trip/?$ plan-your-trip.php [L,QSA]
 RewriteRule ^article/([a-z0-9-]+)/?$ article.php?slug=$1 [L,QSA]
 RewriteRule ^destination/([a-z0-9-]+)/?$ destination.php?slug=$1 [L,QSA]
 RewriteRule ^package/([a-z0-9-]+)/?$ package.php?slug=$1 [L,QSA]
