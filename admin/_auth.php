@@ -1,0 +1,2 @@
+<?php
+session_start();require_once dirname(__DIR__).'/includes/functions.php';if(empty($_SESSION['admin_id'])){header('Location:/admin/login.php');exit;}function csrf_token(){if(empty($_SESSION['csrf']))$_SESSION['csrf']=bin2hex(random_bytes(32));return $_SESSION['csrf'];}function verify_csrf(){if(!hash_equals($_SESSION['csrf']??'',$_POST['csrf']??'')){http_response_code(419);exit('Invalid security token.');}}function admin_db(){return db();}
