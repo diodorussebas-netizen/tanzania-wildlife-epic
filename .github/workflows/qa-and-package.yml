@@ -1,0 +1,32 @@
+name: QA and Package
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  qa-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: PHP syntax check
+        run: |
+          find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: Verify branding hygiene
+        run: |
+          ! grep -RniE 'Mbega African Safaris|Peaceful Expeditions' --exclude-dir=.git .
+      - name: Build production zip
+        run: |
+          zip -r Tanzania-Wildlife-Epic-PRODUCTION.zip . -x '.git/*' '.github/*' 'config.php' '*.DS_Store'
+      - name: Upload production ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tanzania-Wildlife-Epic-PRODUCTION
+          path: Tanzania-Wildlife-Epic-PRODUCTION.zip
+          retention-days: 30
